@@ -1,11 +1,15 @@
 const express = require('express');
 const cheerio = require('cheerio');
 const request = require('request');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 4000;
 const TARGET_URL = 'https://sv.bdu.edu.vn/Default.aspx?page=thoikhoabieu';
 
 const app = express();
+
+app.use(cors());
+
 app.get('/', (req, res) => {
   res.send('<h1>BDU schedule API</h1>');
 });
@@ -33,8 +37,6 @@ getScheduleData = (body) => {
   const schedule = $(
     '#ctl00_ContentPlaceHolder1_ctl00_Table1 tbody td'
   ).toArray();
-
-  console.log(schedule);
 
   const data = schedule.reduce((acc, element) => {
     const el = $(element);
