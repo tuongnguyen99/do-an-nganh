@@ -1,0 +1,250 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: sans-serif;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  background: url(images/wallpaper.jpg);
+  background-size: cover;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: rgba(0, 0, 0, .4);
+}
+
+.greeting {
+  text-align: center;
+  margin-top: 100px;
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.search-box {
+  width: 60%;
+  display: flex;
+  position: relative;
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 300px;
+  border: none;
+  padding: 14px;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, .5);
+  outline: none;
+  border: 1px solid #fff;
+  color: rgb(46,
+38,
+38);
+  font-size: 1.6rem;
+}
+
+.search-box button {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  background-image: url(/images/search.svg);
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.4;
+}
+
+.search-box button:hover {
+  background-color: #ddd;
+}
+
+/* schedule */
+.schedule {
+  margin-top: 40px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  background-color: rgba(0, 0, 0, .36);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.schedule .title {
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+  margin: 6px;
+  z-index: 1;
+}
+
+.schedule .content {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* schedule-item */
+
+.empty-schedule {
+  flex: 1;
+  width: 250px;
+  height: 200px;
+  max-width: 400px;
+  min-width: 250px;
+  border-radius: 4px;
+  background-color: rgba(255, 252, 252, 0.486);
+  display: flex;
+}
+
+.empty-schedule img {
+  height: 100%;
+}
+
+.empty-schedule {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  padding-right: 20px;
+  color: rgb(46,
+      43,
+      43);
+}
+
+.schedule-item {
+  flex: 1;
+  max-width: 400px;
+  min-width: 250px;
+  color: #fff;
+  display: flex;
+  background-color: rgba(255, 255, 255, .2);
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  border: 1px solid #ddd;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.schedule-item .label {
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 1px solid rgb(243, 240, 240);
+}
+
+.schedule-item p {
+  height: 20px;
+}
+
+.schedule-item.content p {
+  display: block;
+}
+
+/* login modal */
+.login {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: sandybrown;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 100px;
+  user-select: none;
+}
+
+.login img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 40px;
+}
+
+.login h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.login input {
+  width: 250px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  padding: 0 10px;
+}
+
+.login button {
+  height: 40px;
+  width: 40px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #333;
+  margin-left: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.login button:hover {
+  background-color: tomato;
+  color: #fff;
+}
+
+#clock {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  font-size: 4rem;
+  color: #fff;
+}
+
+#btnLogout {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  background-color: rgba(255, 255, 255, .2);
+  border: 1px solid #fff;
+  background-image: url(/images/logout.svg);
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: .2s;
+  cursor: pointer;
+}
+
+#logout:hover {
+  transform: scale(1.2);
+}

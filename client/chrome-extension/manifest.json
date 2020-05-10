@@ -1,0 +1,11 @@
+{
+  "name": "BDU Schedule",
+  "description": "Custom start page for Chrome",
+  "version": "1.0",
+  "incognito": "split",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": ["http://localhost:4000/api/schedule/17050050"],
+  "manifest_version": 2
+}
