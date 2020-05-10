@@ -55,8 +55,8 @@ html {
   outline: none;
   border: 1px solid #fff;
   color: rgb(46,
-38,
-38);
+      38,
+      38);
   font-size: 1.6rem;
 }
 
@@ -245,6 +245,6 @@ html {
   cursor: pointer;
 }
 
-#logout:hover {
+#btnLogout:hover {
   transform: scale(1.2);
 }
