@@ -16,22 +16,28 @@ app.get('/', (req, res) => {
 
 //convert a string to  an object
 convertToObject = (string) => {
-  const vals = string.split(',');
+  const vals = string.split("','");
   return {
-    class: vals[1],
-    subjectName: vals[2],
+    class: vals[0].replace("ddrivetip('", ''),
+    subjectName: vals[1],
+    subjectCode: vals[2],
     weekDay: vals[3],
+    room: vals[5],
     startSlot: vals[6],
     numbersOfSlots: vals[7],
     instructor: vals[8],
   };
 };
 
-// get schedule from html
-getScheduleData = (body) => {
-  const $ = cheerio.load(body);
+// get data from html
+getData = (html) => {
+  const $ = cheerio.load(html);
   const id = $('#ctl00_ContentPlaceHolder1_ctl00_lblContentMaSV').text();
-  const name = $('#ctl00_ContentPlaceHolder1_ctl00_lblContentTenSV').text();
+  const [name, dateOfBirth] = $(
+    '#ctl00_ContentPlaceHolder1_ctl00_lblContentTenSV'
+  )
+    .text()
+    .split(' - ');
   const detail = $('#ctl00_ContentPlaceHolder1_ctl00_lblContentLopSV').text();
 
   const schedule = $(
@@ -41,14 +47,11 @@ getScheduleData = (body) => {
   const data = schedule.reduce((acc, element) => {
     const el = $(element);
     let content = el.attr('onmouseover');
-    if (content) {
-      content = convertToObject(content);
-      acc.push(content);
-    }
+    content ? acc.push(convertToObject(content)) : acc;
     return acc;
   }, []);
 
-  return { id, name, detail, schedule: data };
+  return { id, name, dateOfBirth, detail, schedule: data };
 };
 
 app.get('/api/schedule/:id', (req, res) => {
@@ -60,7 +63,7 @@ app.get('/api/schedule/:id', (req, res) => {
     if (error) {
       return res.status(500).json({ error: 'internal server error' });
     }
-    const schedule = getScheduleData(body);
+    const schedule = getData(body);
     res.send(schedule);
   });
 });
