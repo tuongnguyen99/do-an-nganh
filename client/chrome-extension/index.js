@@ -109,7 +109,9 @@ function renderEmptySchedule() {
 }
 
 // get data from API by student Id
-fetch(`http://localhost:4000/api/schedule/${id}`, { method: 'GET' })
+fetch(`https://bdu-schedule-api.herokuapp.com/api/schedule/${id}`, {
+  method: 'GET',
+})
   .then((res) => {
     return res.json();
   })
