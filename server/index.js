@@ -39,8 +39,6 @@ const dayMap = {
   'Chủ Nhật': 6,
 };
 
-const timeMap = [7, 7.45, 8.3, 9.45, 10, 1.45];
-
 getDate = (startDate, weekDay) => {
   startDate = startDate.split('/');
   var date = new Date(`${startDate[2]}/${startDate[1]}, ${startDate[0]}`);
@@ -54,6 +52,15 @@ getDate = (startDate, weekDay) => {
 getData = (html) => {
   const $ = cheerio.load(html);
   const id = $('#ctl00_ContentPlaceHolder1_ctl00_lblContentMaSV').text();
+  if (id === '') {
+    return {
+      error: {
+        statusCode: 400,
+        message: 'Bad request - No student Id found!',
+      },
+    };
+  }
+
   const [name, dateOfBirth] = $(
     '#ctl00_ContentPlaceHolder1_ctl00_lblContentTenSV'
   )
@@ -106,7 +113,10 @@ app.get('/api/schedule/:id', (req, res) => {
       return res.status(500).json({ error: 'internal server error' });
     }
     const schedule = getData(body);
-    res.send(schedule);
+
+    !schedule['error']
+      ? res.status(schedule[statusCode]).send(schedule['error'])
+      : res.send(schedule);
   });
 });
 
