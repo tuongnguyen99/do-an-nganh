@@ -114,8 +114,8 @@ app.get('/api/schedule/:id', (req, res) => {
     }
     const schedule = getData(body);
 
-    !schedule['error']
-      ? res.status(schedule[statusCode]).send(schedule['error'])
+    schedule['error']
+      ? res.status(schedule.error.statusCode).send(schedule.error)
       : res.send(schedule);
   });
 });
