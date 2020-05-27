@@ -71,6 +71,8 @@ getData = (html) => {
   const [startDate, endDate] = date.match(
     /(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}/g
   );
+  const weekCount = date.split(' ')[1];
+  
 
   const schedule = $(
     '#ctl00_ContentPlaceHolder1_ctl00_Table1 tbody td'
@@ -90,6 +92,7 @@ getData = (html) => {
 
   return {
     week: {
+      weekCount,
       from: startDate,
       to: endDate,
     },
